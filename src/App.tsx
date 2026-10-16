@@ -13,6 +13,8 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
   const [filter, setFilter] = useState<'all' | 'active' | 'done'>('all');
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editText, setEditText] = useState('');
 
   const addTodo = () => {
     if (text.trim() === '') return;
@@ -34,6 +36,22 @@ function App() {
 
   const clearDone = () => {
     setTodos(todos.filter((todo) => !todo.done));
+  };
+
+  const startEdit = (id: number, currentText: string) => {
+    setEditingId(id);
+    setEditText(currentText);
+  };
+
+  const saveEdit = () => {
+    if (editText.trim() === '') return;
+    setTodos(
+      todos.map((todo) =>
+        todo.id === editingId ? { ...todo, text: editText } : todo
+      )
+    );
+    setEditingId(null);
+    setEditText('');
   };
 
   useEffect(() => {
@@ -76,8 +94,25 @@ function App() {
             key={todo.id}
             className={todo.done ? 'done' : ''}
             onClick={() => toggleTodo(todo.id)}
+            onDoubleClick={() => startEdit(todo.id, todo.text)}
           >
-            <span>{todo.text}</span>
+            {editingId === todo.id ? (
+              <input
+                type="text"
+                className="edit-input"
+                value={editText}
+                autoFocus
+                onChange={(e) => setEditText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') saveEdit();
+                  if (e.key === 'Escape') setEditingId(null);
+                }}
+                onBlur={saveEdit}
+                onClick={(e) => e.stopPropagation()}
+              />
+            ) : (
+              <span>{todo.text}</span>
+            )}
             <button
               className="delete-btn"
               onClick={(e) => {

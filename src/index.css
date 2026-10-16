@@ -180,3 +180,14 @@ h1 {
 .clear-btn:hover {
   background: rgba(255, 255, 255, 0.35);
 }
+
+.edit-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 2px solid white;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e3a8a;
+}
