@@ -4,6 +4,7 @@ type Todo = {
   id: number;
   text: string;
   done: boolean;
+  deadline: string;
 };
 
 function App() {
@@ -16,11 +17,13 @@ function App() {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editText, setEditText] = useState('');
   const [darkMode, setDarkMode] = useState(false);
+  const [deadline, setDeadline] = useState('');
 
   const addTodo = () => {
     if (text.trim() === '') return;
-    setTodos([...todos, { id: Date.now(), text, done: false }]);
+    setTodos([...todos, { id: Date.now(), text, done: false, deadline }]);
     setText('');
+    setDeadline('');
   };
 
   const toggleTodo = (id: number) => {
@@ -81,6 +84,12 @@ function App() {
             onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && addTodo()}
           />
+          <input
+            type="date"
+            className="deadline-input"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+          />
           <button onClick={addTodo}>Lägg till</button>
         </div>
 
@@ -117,7 +126,14 @@ function App() {
                   onClick={(e) => e.stopPropagation()}
                 />
               ) : (
-                <span>{todo.text}</span>
+                <div className="todo-content">
+                  <span>{todo.text}</span>
+                  {todo.deadline && (
+                    <small className="deadline">
+                      📅 {todo.deadline}
+                    </small>
+                  )}
+                </div>
               )}
               <button
                 className="delete-btn"

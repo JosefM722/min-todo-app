@@ -233,3 +233,37 @@ h1 {
 body.dark {
   background: linear-gradient(135deg, #0f172a, #1e293b);
 }
+
+.deadline-input {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e3a8a;
+  outline: none;
+  cursor: pointer;
+}
+
+.todo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deadline {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.input-row {
+  flex-wrap: wrap;
+}
+
+.input-row input[type="text"] {
+  flex: 1 1 100%;
+}
+
+.deadline-input {
+  flex: 1;
+}
