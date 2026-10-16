@@ -291,3 +291,16 @@ body.dark {
 .priority-high {
   border-left: 6px solid #ef4444;
 }
+
+.todo-list li {
+  cursor: grab;
+}
+
+.todo-list li:active {
+  cursor: grabbing;
+}
+
+.todo-list li.dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
+}

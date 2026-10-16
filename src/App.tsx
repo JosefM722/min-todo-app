@@ -20,6 +20,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [deadline, setDeadline] = useState('');
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
+  const [draggedId, setDraggedId] = useState<number | null>(null);
 
   const addTodo = () => {
     if (text.trim() === '') return;
@@ -62,6 +63,17 @@ function App() {
     );
     setEditingId(null);
     setEditText('');
+  };
+
+  const handleDrop = (targetId: number) => {
+    if (draggedId === null || draggedId === targetId) return;
+    const fromIndex = todos.findIndex((t) => t.id === draggedId);
+    const toIndex = todos.findIndex((t) => t.id === targetId);
+    const updated = [...todos];
+    const [moved] = updated.splice(fromIndex, 1);
+    updated.splice(toIndex, 0, moved);
+    setTodos(updated);
+    setDraggedId(null);
   };
 
   useEffect(() => {
@@ -125,7 +137,11 @@ function App() {
           {filteredTodos.map((todo) => (
             <li
               key={todo.id}
-              className={`${todo.done ? 'done' : ''} priority-${todo.priority}`}
+              draggable
+              onDragStart={() => setDraggedId(todo.id)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => handleDrop(todo.id)}
+              className={`${todo.done ? 'done' : ''} priority-${todo.priority} ${draggedId === todo.id ? 'dragging' : ''}`}
               onClick={() => toggleTodo(todo.id)}
               onDoubleClick={() => startEdit(todo.id, todo.text)}
             >
