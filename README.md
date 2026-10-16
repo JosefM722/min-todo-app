@@ -9,13 +9,17 @@ En snygg och modern todo-app byggd med **React + TypeScript + Vite**.
 ## ✨ Funktioner
 
 - ➕ Lägg till todos
-- ✅ Markera som klara (blir gröna)
+- ✅ Markera som klara (blir ljusa)
+- ✏️ Redigera todos (dubbelklicka)
 - 🗑️ Ta bort enskilda todos
 - 🎯 Filtrera: Alla / Aktiva / Klara
 - 💾 Sparas automatiskt i localStorage
 - 🧹 Rensa alla klara med ett klick
-- 🎨 Blå bakgrund, röda aktiva, gröna klara
-- ✨ Mjuka animationer
+- 📅 Deadlines med datumväljare
+- 🎯 Prioritet (låg/mellan/hög) med färgade remsor
+- 🌙 Dark mode
+- 🖱️ Drag-and-drop för att ändra ordning
+- 🎨 Turkos design med animationer
 
 ## 🛠️ Teknik
 
@@ -23,6 +27,7 @@ En snygg och modern todo-app byggd med **React + TypeScript + Vite**.
 - TypeScript
 - Vite
 - CSS
+- GoatCounter (besöksstatistik)
 
 ## 🚀 Kom igång lokalt
 
