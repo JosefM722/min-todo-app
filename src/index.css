@@ -191,3 +191,45 @@ h1 {
   background: rgba(255, 255, 255, 0.95);
   color: #1e3a8a;
 }
+
+.app.dark {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.app.dark h1,
+.app.dark .counter {
+  color: #e5e7eb;
+}
+
+.app.dark .input-row input {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.app.dark .input-row input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dark-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+.dark-toggle:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+body.dark {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
