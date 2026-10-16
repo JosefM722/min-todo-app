@@ -5,6 +5,7 @@ type Todo = {
   text: string;
   done: boolean;
   deadline: string;
+  priority: 'low' | 'medium' | 'high';
 };
 
 function App() {
@@ -18,12 +19,17 @@ function App() {
   const [editText, setEditText] = useState('');
   const [darkMode, setDarkMode] = useState(false);
   const [deadline, setDeadline] = useState('');
+  const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
 
   const addTodo = () => {
     if (text.trim() === '') return;
-    setTodos([...todos, { id: Date.now(), text, done: false, deadline }]);
+    setTodos([
+      ...todos,
+      { id: Date.now(), text, done: false, deadline, priority },
+    ]);
     setText('');
     setDeadline('');
+    setPriority('medium');
   };
 
   const toggleTodo = (id: number) => {
@@ -88,8 +94,20 @@ function App() {
             type="date"
             className="deadline-input"
             value={deadline}
+            min={new Date().toISOString().split('T')[0]}
             onChange={(e) => setDeadline(e.target.value)}
           />
+          <select
+            className="priority-select"
+            value={priority}
+            onChange={(e) =>
+              setPriority(e.target.value as 'low' | 'medium' | 'high')
+            }
+          >
+            <option value="low">🟢 Låg</option>
+            <option value="medium">🟡 Mellan</option>
+            <option value="high">🔴 Hög</option>
+          </select>
           <button onClick={addTodo}>Lägg till</button>
         </div>
 
@@ -107,7 +125,7 @@ function App() {
           {filteredTodos.map((todo) => (
             <li
               key={todo.id}
-              className={todo.done ? 'done' : ''}
+              className={`${todo.done ? 'done' : ''} priority-${todo.priority}`}
               onClick={() => toggleTodo(todo.id)}
               onDoubleClick={() => startEdit(todo.id, todo.text)}
             >
