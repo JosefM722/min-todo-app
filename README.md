@@ -1,5 +1,7 @@
 # 📝 Min Todo App
 
+![Skärmbild](./public/screenshot.png)
+
 En snygg och modern todo-app byggd med **React + TypeScript + Vite**.
 
 🔗 **Live demo:** https://JosefM722.github.io/min-todo-app
