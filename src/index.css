@@ -75,7 +75,7 @@ h1 {
   border-radius: 10px;
   color: white;
   font-size: 16px;
-  background: #0891b2;
+  background: #8b92a0;
   transition: all 0.3s ease;
 }
 
@@ -88,8 +88,8 @@ h1 {
 }
 
 .todo-list li.done {
-  background: #a5f3fc;
-  color: #0e7490;
+  background: #d1d5db;
+  color: #4b5563;
   text-decoration: line-through;
   opacity: 0.9;
 }
@@ -113,6 +113,10 @@ h1 {
 
 .delete-btn:hover {
   background: rgba(0, 0, 0, 0.2);
+}
+
+.todo-list li.done .delete-btn {
+  color: #4b5563;
 }
 
 .filters {
@@ -244,6 +248,19 @@ body.dark {
   color: #1e3a8a;
   outline: none;
   cursor: pointer;
+  min-width: 140px;
+}
+
+.deadline-input::-webkit-datetime-edit {
+  color: #1e3a8a;
+}
+
+.app.dark .deadline-input {
+  color: white;
+}
+
+.app.dark .deadline-input::-webkit-datetime-edit {
+  color: white;
 }
 
 .todo-content {
@@ -303,4 +320,17 @@ body.dark {
 .todo-list li.dragging {
   opacity: 0.5;
   transform: scale(0.98);
+}
+
+@media (max-width: 600px) {
+  .input-row {
+    flex-direction: column;
+  }
+
+  .input-row input[type="text"],
+  .input-row button,
+  .deadline-input,
+  .priority-select {
+    width: 100%;
+  }
 }
