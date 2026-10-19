@@ -334,3 +334,8 @@ body.dark {
     width: 100%;
   }
 }
+
+.deadline-input {
+  box-sizing: border-box;
+  max-width: 100%;
+}
